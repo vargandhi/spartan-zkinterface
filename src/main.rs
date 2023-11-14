@@ -68,7 +68,7 @@ fn main() {
             } else {
                 std::panic!("Circuit should be satisfied by assignments");
             }
-        Err(e) => std::panic!(e)
+        Err(e) => std::panic!("{:?}", e)
     }
 
     // Start timer for prover
