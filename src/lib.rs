@@ -9,6 +9,7 @@ use std::fmt;
 use std::fs::File;
 use std::io::Read;
 use zkinterface_generated::zkinterface as fb;
+use pyo3::prelude::*;
 
 #[derive(Debug)]
 pub struct FlatError {
@@ -329,4 +330,19 @@ fn test_e2e_add() {
 #[test]
 fn test_e2e_inv() {
     run_e2e("test/inv.zkif", "test/inv.inp.zkif", "test/inv.wit.zkif");
+}
+
+#[pyfunction]
+fn main_spzk(){
+    println!("VBG Maturin editable works!");
+
+    // let reader = R1csReader::new(&mut bufh, &mut bufcs, &mut bufw);
+    // let r1cs = R1cs::from(reader);
+}
+
+#[pymodule]
+fn spzk(_py: Python, m: &PyModule) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(main_spzk, m)?)?;
+
+    Ok(())
 }
