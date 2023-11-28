@@ -34,12 +34,17 @@ fn main() {
     let inputsfn = args.get(4).unwrap();
     let witnessfn = args.get(5).unwrap();
 
+    
     let mut fh = File::open(inputsfn).unwrap();
     let mut bufh = Vec::new();
     fh.read_to_end(&mut bufh).unwrap();
+
+
     let mut fcs = File::open(circuitfn).unwrap();
     let mut bufcs = Vec::new();
     fcs.read_to_end(&mut bufcs).unwrap();
+
+
     let mut fw = File::open(witnessfn).unwrap();
     let mut bufw = Vec::new();
     fw.read_to_end(&mut bufw).unwrap();

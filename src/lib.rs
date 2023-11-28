@@ -332,9 +332,31 @@ fn test_e2e_inv() {
     run_e2e("test/inv.zkif", "test/inv.inp.zkif", "test/inv.wit.zkif");
 }
 
+fn print_u8_vec(vec: Vec<u8>) {
+    // for item in vec {
+    //     println!("{}", item);
+    // }
+    let s: String = vec.iter().map(|item| item.to_string()).collect::<Vec<String>>().join(" ");
+    println!("{}", s);
+}
+
 #[pyfunction]
-fn main_spzk(){
+fn main_spzk(circuit_buf:Vec<u8>, constraints_buf:Vec<u8>, witness_buf:Vec<u8>){
+
     println!("VBG Maturin editable works!");
+
+    let mut bufh = Vec::new();
+    let mut bufcs = Vec::new();
+    let mut bufw = Vec::new();
+
+    bufh = circuit_buf;
+    bufcs = constraints_buf;
+    bufw = witness_buf;
+
+    print_u8_vec(bufh);
+
+    //let reader = R1csReader::new(&mut bufh, &mut bufcs, &mut bufw);
+    
 
     // let reader = R1csReader::new(&mut bufh, &mut bufcs, &mut bufw);
     // let r1cs = R1cs::from(reader);
